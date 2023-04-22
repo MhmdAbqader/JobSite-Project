@@ -1,0 +1,50 @@
+﻿@model IEnumerable<trial2.Models.ApplyForJob>
+
+@{
+    ViewBag.Title = "Number_jobs_user";
+    Layout = "~/Views/shared/_MyLayout.cshtml";
+}
+
+<h2>قائمة الوظائف المتقدم اليها </h2>
+<h1>هؤلاء عدد الوظائف التي تقدمت لها = @ViewBag.x
+</h1> 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.job.jobtitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MSG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JodId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.job.jobtitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MSG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JodId)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("تفاصيل", "jobDetails", new { id=item.ID }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

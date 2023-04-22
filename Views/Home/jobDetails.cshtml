@@ -1,0 +1,50 @@
+﻿@model trial2.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "jobDetails";
+    Layout = "~/Views/shared/_MyLayout.cshtml";
+}
+
+<h2>تفاصيل الوظيفة</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+             نوع المستخدم 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.UserType)
+        </dd>
+
+        <dt>
+             نص الرسالة 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MSG)
+        </dd>
+
+        <dt>
+            تاريخ التقديم 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job.jobtitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job.jobtitle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("العودة الى الوظائف خاصتي", "Number_jobs_user")
+</p>

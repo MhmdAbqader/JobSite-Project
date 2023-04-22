@@ -1,0 +1,39 @@
+﻿@model IEnumerable<trial2.Models.Cats1>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+ 
+    <div class="jumbotron">
+        <h1>مرحبا بك عزيزي الزائر</h1>
+        <p class="lead" style="color:black">مرحبا بك فى فضاء البحث عن الوظائف العامة والخاصة وخارج البلاد</p>
+        <p><a href="http://asp.net" class="btn btn-primary btn-lg">المزيد من التفاصيل &raquo;</a></p>
+    </div>
+@foreach(var item in Model)
+{
+    <h1>@Html.DisplayFor(modelitem => item.catname)</h1>
+    <h4>@Html.DisplayFor(modelitem => item.catdescription)</h4>
+
+    <div class="row" >
+        @foreach (var subitem in item.Jobs)
+        {
+            <div class="col-md-3" thumbnail >
+                <img src="~/uploads/@subitem.jobImage"  style="height:45px; width:45px"/>
+                 
+                <h3>@Html.DisplayFor(modelItem => subitem.jobtitle)</h3>
+                <h5>@Html.DisplayFor(modelItem => subitem.jobcontent)</h5>
+                @*<button class="btn btn-primary">التفاصيل</button>*@
+                @Html.ActionLink("التفاصيل", "Details",
+               new { id = subitem.Id }, new { @class = "btn btn-success" })
+            </div>
+        }
+    </div>
+
+
+
+
+}
+
+
+
+  

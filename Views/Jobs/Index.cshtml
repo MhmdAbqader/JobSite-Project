@@ -1,0 +1,56 @@
+﻿@model IEnumerable<trial2.Models.Job>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/shared/_MyLayout.cshtml";
+}
+
+<h2>قائمة الوظائف</h2>
+
+<p>
+    @Html.ActionLink("انشاء وظيفة جديدة", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.jobtitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobcontent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cat_id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobtitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobcontent)
+        </td>
+        <td>
+            <img src="~/uploads/@Html.DisplayFor(model => item.jobImage)"
+                  class="thumbnail" style="height:45px;width:45px" />
+        </td>
+        <td>
+            
+                @Html.DisplayFor(modelItem => item.category.catname)
+                @Html.DisplayFor(modelItem => item.cat_id)
+
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id=item.Id }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

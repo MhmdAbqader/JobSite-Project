@@ -1,0 +1,53 @@
+﻿@model trial2.Models.Job
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/shared/_MyLayout.cshtml";
+}
+
+<h2>التفاصيل</h2>
+
+<div>
+     
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.jobtitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobtitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jobcontent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobcontent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jobImage)
+        </dt>
+
+        <dd>
+            <img src="~/uploads/@Html.DisplayFor(model => model.jobImage)"
+                  class="thumbnail" style="height:45px;width:45px"/>
+            
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cat_id)
+        </dt>
+            @Html.DisplayFor(model => model.cat_id)
+        <dd>
+          
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("العودة الى القائمة, ","Index")
+</p>

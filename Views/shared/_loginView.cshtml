@@ -1,0 +1,113 @@
+﻿@using WebApplication1.Models;
+@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoff" }))
+    {
+        ApplicationDbContext db = new ApplicationDbContext();
+        var UserId = User.Identity.GetUserId();
+        var current_User = db.Users.Where(x => x.Id == UserId).SingleOrDefault();
+
+        @Html.AntiForgeryToken();
+
+        <ul class=" nav navbar-nav navbar-right ">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <strong>مرحبا بك يا @current_User.UserName</strong>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="text-center">
+                                        <span class="glyphicon glyphicon-user" style="font-size:35px"></span>
+                                    </p>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p class="text-right">
+                                        <strong style="color:darkred">
+                                           @current_User.UserName 
+                                        </strong>
+                                    </p>
+                                    @if (current_User.UserType == "ناشر") {
+                                        <a href="~/Home/GetJobsByPublisher" class="btn btn-primary btn-block">وظائفك المنشورة</a>
+                                        <a href="~/Jobs/Create" class="btn btn-primary btn-block">نشر وظيفة </a>
+
+                                    }
+                                    else
+                                    {
+                                        <a href="~/Home/Number_jobs_user" class="btn btn-primary  btn-block">وظائفك</a>
+                                    }
+                                        <a href="#" class="btn btn-primary btn-block">حسابك  </a>
+                                   </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider">
+                       <li>
+                           <div>
+                               <div class="row">
+                                    <div class="col-lg-12">
+                                        <p><a href="javascript:document.getElementById('logoff').submit()"
+                                              class="btn btn-danger btn-block">تسجيل الخروج</a></p>
+                                    </div>
+                               </div>
+                           </div>
+                       </li>
+                    </li>
+                </ul>
+            </li>
+
+
+
+
+
+
+
+
+
+            @*<li> 
+                @Html.ActionLink("Hello " + User.Identity.GetUserName(), "Index", "Manage")
+            </li>
+            <!--this is Mine-->
+            @*<li>
+                    <a href="/Manage/Index">
+                        <i class="glyphicon glyphicon-user"></i>
+                      HI  @User.Identity.GetUserName()
+                    </a>
+                </li>*@
+
+            @*<li>*@
+                <!--that's Mine-->
+                @*<input type="submit" value="logout" />*@
+                @*<a href="javascript:document.getElementById('logoff').submit()">logout</a>*@
+            @*</li>*@ 
+        </ul>
+    }
+}
+
+else
+{
+    <ul class=" nav navbar-nav navbar-right ">
+        <li>
+            <a href="~/Account/Login">
+                <i class="glyphicon glyphicon-user"></i>
+                تسجيل الدخول
+            </a>
+            @*<a href="#">
+                    <i class="glyphicon glyphicon-user"></i>
+                    تسجيل الدخول
+                </a>*@
+        </li>
+        <li>
+            <a href="~/account/Register">
+                <i class="glyphicon glyphicon-lock"></i>
+                أشتراك
+            </a>
+        </li>
+    </ul>
+}

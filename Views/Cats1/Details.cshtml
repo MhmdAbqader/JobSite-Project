@@ -1,0 +1,35 @@
+﻿@model trial2.Models.Cats1
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/shared/_MyLayout.cshtml";
+}
+
+<h2>تفاصيل النوع</h2>
+
+<div>
+    <h4>تفاصيل النوع</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.catname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.catname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.catdescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.catdescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("العودة الى القائمة", "Index")
+</p>
